@@ -5,9 +5,15 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/stretchr/testify/assert"
+=======
+	"github.com/stretchr/testify/assert"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/tikvrpc"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 var _ tikv.Client = &resourceGroupTagMockClient{}

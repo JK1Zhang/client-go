@@ -19,9 +19,15 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc/interceptor"
 	"github.com/stretchr/testify/assert"
+=======
+	"github.com/stretchr/testify/assert"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/tikvrpc/interceptor"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 type emptyClient struct{}

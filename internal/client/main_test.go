@@ -17,7 +17,11 @@ package client
 import (
 	"testing"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/util"
+=======
+	"github.com/tikv/client-go/v2/util"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.uber.org/goleak"
 )
 

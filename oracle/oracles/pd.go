@@ -41,10 +41,17 @@ import (
 	"sync/atomic"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/logutil"
 	"github.com/JK1Zhang/client-go/v3/metrics"
 	"github.com/JK1Zhang/client-go/v3/oracle"
 	"github.com/pkg/errors"
+=======
+	"github.com/pkg/errors"
+	"github.com/tikv/client-go/v2/internal/logutil"
+	"github.com/tikv/client-go/v2/metrics"
+	"github.com/tikv/client-go/v2/oracle"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	pd "github.com/tikv/pd/client"
 	"go.uber.org/zap"
 )

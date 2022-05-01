@@ -27,10 +27,17 @@ import (
 	"sync"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/logutil"
 	"github.com/pingcap/kvproto/pkg/coprocessor"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pingcap/kvproto/pkg/tikvpb"
+=======
+	"github.com/pingcap/kvproto/pkg/coprocessor"
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/pingcap/kvproto/pkg/tikvpb"
+	"github.com/tikv/client-go/v2/internal/logutil"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )

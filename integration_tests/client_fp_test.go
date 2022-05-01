@@ -18,12 +18,21 @@ import (
 	"context"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/JK1Zhang/client-go/v3/util"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
+=======
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/pkg/errors"
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/util"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // mock TiKV RPC client that hooks message by failpoint

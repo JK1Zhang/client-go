@@ -48,6 +48,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/internal/client"
 	"github.com/JK1Zhang/client-go/v3/internal/logutil"
@@ -56,12 +57,25 @@ import (
 	"github.com/JK1Zhang/client-go/v3/metrics"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/JK1Zhang/client-go/v3/util"
+=======
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"github.com/opentracing/opentracing-go"
 	"github.com/pingcap/kvproto/pkg/coprocessor"
 	"github.com/pingcap/kvproto/pkg/errorpb"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pingcap/kvproto/pkg/metapb"
 	"github.com/pkg/errors"
+<<<<<<< HEAD
+=======
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/internal/client"
+	"github.com/tikv/client-go/v2/internal/logutil"
+	"github.com/tikv/client-go/v2/internal/retry"
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/metrics"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/util"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // shuttingDown is a flag to indicate tidb-server is exiting (Ctrl+C signal

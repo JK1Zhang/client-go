@@ -39,6 +39,7 @@ import (
 	"context"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/internal/client"
 	"github.com/JK1Zhang/client-go/v3/internal/locate"
@@ -47,6 +48,16 @@ import (
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
+=======
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/pkg/errors"
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/internal/client"
+	"github.com/tikv/client-go/v2/internal/locate"
+	"github.com/tikv/client-go/v2/internal/retry"
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/tikvrpc"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 type storage interface {

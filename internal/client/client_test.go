@@ -42,8 +42,11 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/config"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
+=======
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"github.com/pingcap/kvproto/pkg/coprocessor"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pingcap/kvproto/pkg/metapb"
@@ -51,6 +54,11 @@ import (
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+<<<<<<< HEAD
+=======
+	"github.com/tikv/client-go/v2/config"
+	"github.com/tikv/client-go/v2/tikvrpc"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"google.golang.org/grpc/connectivity"
 	"google.golang.org/grpc/metadata"
 )

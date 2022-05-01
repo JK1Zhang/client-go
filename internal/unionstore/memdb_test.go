@@ -41,10 +41,17 @@ import (
 	"fmt"
 	"testing"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/kv"
 	leveldb "github.com/pingcap/goleveldb/leveldb/memdb"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+=======
+	leveldb "github.com/pingcap/goleveldb/leveldb/memdb"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"github.com/tikv/client-go/v2/kv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 type KeyFlags = kv.KeyFlags

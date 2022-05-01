@@ -15,8 +15,13 @@
 package txnlock
 
 import (
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+=======
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	tikverr "github.com/tikv/client-go/v2/error"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // ExtractLockFromKeyErr extracts the KeyError.

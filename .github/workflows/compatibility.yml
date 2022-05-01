@@ -29,7 +29,11 @@ jobs:
 
     - name: Check build
       run: |
+<<<<<<< HEAD
         go mod edit -replace=github.com/JK1Zhang/client-go/v3=../client-go
+=======
+        go mod edit -replace=github.com/tikv/client-go/v2=../client-go
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
         go mod tidy
         make server
       working-directory: tidb
@@ -42,7 +46,11 @@ jobs:
 
     - name: Check build
       run: |
+<<<<<<< HEAD
         go mod edit -replace=github.com/JK1Zhang/client-go/v3=../client-go
+=======
+        go mod edit -replace=github.com/tikv/client-go/v2=../client-go
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
         go mod tidy
         go build cmd/go-ycsb/*
       working-directory: go-ycsb

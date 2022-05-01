@@ -42,6 +42,7 @@ import (
 	"sync/atomic"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/internal/logutil"
 	"github.com/JK1Zhang/client-go/v3/kv"
@@ -49,6 +50,15 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/pingcap/log"
 	"github.com/pkg/errors"
+=======
+	"github.com/opentracing/opentracing-go"
+	"github.com/pingcap/log"
+	"github.com/pkg/errors"
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/internal/logutil"
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/util"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

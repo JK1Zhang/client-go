@@ -35,8 +35,13 @@
 package tikv
 
 import (
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/config"
 	"github.com/JK1Zhang/client-go/v3/internal/client"
+=======
+	"github.com/tikv/client-go/v2/config"
+	"github.com/tikv/client-go/v2/internal/client"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // Client is a client that sends RPC.

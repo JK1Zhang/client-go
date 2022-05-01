@@ -40,6 +40,7 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/oracle"
 	"github.com/JK1Zhang/client-go/v3/tikv"
@@ -49,6 +50,17 @@ import (
 	"github.com/pingcap/failpoint"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/stretchr/testify/suite"
+=======
+	"github.com/pingcap/failpoint"
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/stretchr/testify/suite"
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/oracle"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/txnkv"
+	"github.com/tikv/client-go/v2/txnkv/txnlock"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 func TestSnapshotFail(t *testing.T) {

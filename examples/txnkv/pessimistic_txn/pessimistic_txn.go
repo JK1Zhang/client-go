@@ -20,9 +20,15 @@ import (
 	"fmt"
 	"os"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/kv"
 	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/JK1Zhang/client-go/v3/txnkv"
+=======
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/txnkv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // KV represents a Key-Value pair.

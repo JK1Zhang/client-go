@@ -17,7 +17,11 @@ package tikv
 import (
 	"context"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/logutil"
+=======
+	"github.com/tikv/client-go/v2/internal/logutil"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.uber.org/zap"
 )
 

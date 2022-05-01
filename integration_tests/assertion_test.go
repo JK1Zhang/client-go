@@ -20,16 +20,28 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/kv"
 	"github.com/JK1Zhang/client-go/v3/oracle"
 	"github.com/JK1Zhang/client-go/v3/testutils"
 	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/JK1Zhang/client-go/v3/txnkv/transaction"
+=======
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"github.com/pingcap/errors"
 	"github.com/pingcap/failpoint"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/stretchr/testify/suite"
+<<<<<<< HEAD
+=======
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/oracle"
+	"github.com/tikv/client-go/v2/testutils"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/txnkv/transaction"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 func TestAssertion(t *testing.T) {

@@ -15,8 +15,13 @@
 package kvrpc
 
 import (
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/locate"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
+=======
+	"github.com/tikv/client-go/v2/internal/locate"
+	"github.com/tikv/client-go/v2/tikvrpc"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // Batch is part of the mutation set that will be sent to tikv in a request.

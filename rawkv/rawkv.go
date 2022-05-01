@@ -39,6 +39,7 @@ import (
 	"context"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/config"
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/internal/client"
@@ -49,6 +50,18 @@ import (
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
+=======
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/pkg/errors"
+	"github.com/tikv/client-go/v2/config"
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/internal/client"
+	"github.com/tikv/client-go/v2/internal/kvrpc"
+	"github.com/tikv/client-go/v2/internal/locate"
+	"github.com/tikv/client-go/v2/internal/retry"
+	"github.com/tikv/client-go/v2/metrics"
+	"github.com/tikv/client-go/v2/tikvrpc"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	pd "github.com/tikv/pd/client"
 )
 

@@ -37,9 +37,15 @@ package locate
 import (
 	"context"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/util/codec"
 	"github.com/pingcap/kvproto/pkg/metapb"
 	"github.com/pkg/errors"
+=======
+	"github.com/pingcap/kvproto/pkg/metapb"
+	"github.com/pkg/errors"
+	"github.com/tikv/client-go/v2/util/codec"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	pd "github.com/tikv/pd/client"
 )
 

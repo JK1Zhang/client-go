@@ -39,12 +39,21 @@ import (
 	"fmt"
 	"testing"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/kv"
 	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/JK1Zhang/client-go/v3/txnkv"
 	"github.com/JK1Zhang/client-go/v3/txnkv/transaction"
 	"github.com/JK1Zhang/client-go/v3/txnkv/txnsnapshot"
 	"github.com/stretchr/testify/suite"
+=======
+	"github.com/stretchr/testify/suite"
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/txnkv"
+	"github.com/tikv/client-go/v2/txnkv/transaction"
+	"github.com/tikv/client-go/v2/txnkv/txnsnapshot"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 var scanBatchSize = tikv.ConfigProbe{}.GetScanBatchSize()

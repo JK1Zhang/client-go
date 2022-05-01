@@ -20,10 +20,17 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/config"
 	"github.com/JK1Zhang/client-go/v3/rawkv"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
+=======
+	"github.com/stretchr/testify/require"
+	"github.com/stretchr/testify/suite"
+	"github.com/tikv/client-go/v2/config"
+	"github.com/tikv/client-go/v2/rawkv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 func TestTTL(t *testing.T) {

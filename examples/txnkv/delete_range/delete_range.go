@@ -22,7 +22,11 @@ import (
 	"math/rand"
 	"os"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/tikv"
+=======
+	"github.com/tikv/client-go/v2/tikv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 var (

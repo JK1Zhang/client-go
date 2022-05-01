@@ -44,6 +44,7 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/kv"
 	"github.com/JK1Zhang/client-go/v3/oracle"
@@ -52,11 +53,24 @@ import (
 	"github.com/JK1Zhang/client-go/v3/txnkv"
 	"github.com/JK1Zhang/client-go/v3/txnkv/transaction"
 	"github.com/JK1Zhang/client-go/v3/txnkv/txnlock"
+=======
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"github.com/pingcap/failpoint"
 	deadlockpb "github.com/pingcap/kvproto/pkg/deadlock"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/suite"
+<<<<<<< HEAD
+=======
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/oracle"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/txnkv"
+	"github.com/tikv/client-go/v2/txnkv/transaction"
+	"github.com/tikv/client-go/v2/txnkv/txnlock"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 var getMaxBackoff = tikv.ConfigProbe{}.GetGetMaxBackoff()

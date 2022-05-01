@@ -25,9 +25,15 @@ import (
 	"sync"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/util"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+=======
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/util"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // ReturnedValue pairs the Value and AlreadyLocked flag for PessimisticLock return values result.

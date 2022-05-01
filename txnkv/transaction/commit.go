@@ -38,6 +38,7 @@ import (
 	"encoding/hex"
 	"time"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/internal/client"
 	"github.com/JK1Zhang/client-go/v3/internal/locate"
@@ -45,10 +46,22 @@ import (
 	"github.com/JK1Zhang/client-go/v3/internal/retry"
 	"github.com/JK1Zhang/client-go/v3/metrics"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
+=======
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"github.com/opentracing/opentracing-go"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
+<<<<<<< HEAD
+=======
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/internal/client"
+	"github.com/tikv/client-go/v2/internal/locate"
+	"github.com/tikv/client-go/v2/internal/logutil"
+	"github.com/tikv/client-go/v2/internal/retry"
+	"github.com/tikv/client-go/v2/metrics"
+	"github.com/tikv/client-go/v2/tikvrpc"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.uber.org/zap"
 )
 

@@ -37,12 +37,21 @@ package txnsnapshot
 import (
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/client"
 	"github.com/JK1Zhang/client-go/v3/internal/locate"
 	"github.com/JK1Zhang/client-go/v3/internal/retry"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/JK1Zhang/client-go/v3/txnkv/txnlock"
 	"github.com/JK1Zhang/client-go/v3/util"
+=======
+	"github.com/tikv/client-go/v2/internal/client"
+	"github.com/tikv/client-go/v2/internal/locate"
+	"github.com/tikv/client-go/v2/internal/retry"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/txnkv/txnlock"
+	"github.com/tikv/client-go/v2/util"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // ClientHelper wraps LockResolver and RegionRequestSender.

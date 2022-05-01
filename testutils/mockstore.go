@@ -15,8 +15,13 @@
 package testutils
 
 import (
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/mockstore/cluster"
 	"github.com/JK1Zhang/client-go/v3/internal/mockstore/mocktikv"
+=======
+	"github.com/tikv/client-go/v2/internal/mockstore/cluster"
+	"github.com/tikv/client-go/v2/internal/mockstore/mocktikv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	pd "github.com/tikv/pd/client"
 )
 

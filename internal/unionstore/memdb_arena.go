@@ -39,7 +39,17 @@ import (
 	"math"
 	"unsafe"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/kv"
+=======
+<<<<<<< HEAD
+	"github.com/tikv/client-go/v2/kv"
+=======
+	"github.com/tikv/client-go/v2/internal/logutil"
+	"github.com/tikv/client-go/v2/kv"
+	"go.uber.org/zap"
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 const (
@@ -61,7 +71,25 @@ type memdbArenaAddr struct {
 }
 
 func (addr memdbArenaAddr) isNull() bool {
+<<<<<<< HEAD
 	return addr == nullAddr
+=======
+<<<<<<< HEAD
+	return addr == nullAddr
+=======
+	if addr == nullAddr {
+		return true
+	}
+	if addr.idx == math.MaxUint32 || addr.off == math.MaxUint32 {
+		// defensive programming, the code should never run to here.
+		// it always means something wrong... (maybe caused by data race?)
+		// because we never set part of idx/off to math.MaxUint64
+		logutil.BgLogger().Warn("Invalid memdbArenaAddr", zap.Uint32("idx", addr.idx), zap.Uint32("off", addr.off))
+		return true
+	}
+	return false
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 }
 
 // store and load is used by vlog, due to pointer in vlog is not aligned.

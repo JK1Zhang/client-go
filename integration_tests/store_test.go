@@ -40,6 +40,7 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/oracle"
 	"github.com/JK1Zhang/client-go/v3/oracle/oracles"
 	"github.com/JK1Zhang/client-go/v3/tikv"
@@ -48,6 +49,16 @@ import (
 	"github.com/pingcap/failpoint"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/stretchr/testify/suite"
+=======
+	"github.com/pingcap/failpoint"
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/stretchr/testify/suite"
+	"github.com/tikv/client-go/v2/oracle"
+	"github.com/tikv/client-go/v2/oracle/oracles"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/txnkv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 func TestStore(t *testing.T) {

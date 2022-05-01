@@ -39,10 +39,17 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/oracle"
 	"github.com/JK1Zhang/client-go/v3/oracle/oracles"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+=======
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"github.com/tikv/client-go/v2/oracle"
+	"github.com/tikv/client-go/v2/oracle/oracles"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 func TestLocalOracle(t *testing.T) {

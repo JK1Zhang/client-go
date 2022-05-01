@@ -42,8 +42,13 @@ import (
 	"sync"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/logutil"
 	"github.com/pkg/errors"
+=======
+	"github.com/pkg/errors"
+	"github.com/tikv/client-go/v2/internal/logutil"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.etcd.io/etcd/api/v3/mvccpb"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.uber.org/zap"

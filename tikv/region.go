@@ -37,10 +37,17 @@ package tikv
 import (
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/client"
 	"github.com/JK1Zhang/client-go/v3/internal/locate"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/pingcap/kvproto/pkg/metapb"
+=======
+	"github.com/pingcap/kvproto/pkg/metapb"
+	"github.com/tikv/client-go/v2/internal/client"
+	"github.com/tikv/client-go/v2/internal/locate"
+	"github.com/tikv/client-go/v2/tikvrpc"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	pd "github.com/tikv/pd/client"
 )
 

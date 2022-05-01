@@ -37,7 +37,11 @@ package unionstore
 import (
 	"bytes"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/kv"
+=======
+	"github.com/tikv/client-go/v2/kv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // MemdbIterator is an Iterator with KeyFlags related functions.

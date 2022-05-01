@@ -37,8 +37,13 @@ package transaction
 import (
 	"context"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/internal/unionstore"
+=======
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/internal/unionstore"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // BatchBufferGetter is the interface for BatchGet.

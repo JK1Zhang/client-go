@@ -37,12 +37,21 @@ package tikv_test
 import (
 	"testing"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/testutils"
 	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/JK1Zhang/client-go/v3/txnkv/transaction"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+=======
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"github.com/tikv/client-go/v2/testutils"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/txnkv/transaction"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 func TestSetMinCommitTSInAsyncCommit(t *testing.T) {

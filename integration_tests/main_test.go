@@ -17,7 +17,11 @@ package tikv_test
 import (
 	"testing"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/tikv"
+=======
+	"github.com/tikv/client-go/v2/tikv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.uber.org/goleak"
 )
 
@@ -26,7 +30,11 @@ func TestMain(m *testing.M) {
 
 	opts := []goleak.Option{
 		goleak.IgnoreTopFunction("github.com/pingcap/goleveldb/leveldb.(*DB).mpoolDrain"),
+<<<<<<< HEAD
 		goleak.IgnoreTopFunction("github.com/JK1Zhang/client-go/v3/txnkv/transaction.keepAlive"), // TODO: fix ttlManager goroutine leak
+=======
+		goleak.IgnoreTopFunction("github.com/tikv/client-go/v2/txnkv/transaction.keepAlive"), // TODO: fix ttlManager goroutine leak
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	}
 
 	goleak.VerifyTestMain(m, opts...)

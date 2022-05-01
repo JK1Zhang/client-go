@@ -20,12 +20,21 @@ import (
 	"sync/atomic"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/internal/locate"
 	"github.com/JK1Zhang/client-go/v3/internal/retry"
 	"github.com/JK1Zhang/client-go/v3/internal/unionstore"
 	"github.com/JK1Zhang/client-go/v3/kv"
 	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/JK1Zhang/client-go/v3/txnkv/txnsnapshot"
+=======
+	"github.com/tikv/client-go/v2/internal/locate"
+	"github.com/tikv/client-go/v2/internal/retry"
+	"github.com/tikv/client-go/v2/internal/unionstore"
+	"github.com/tikv/client-go/v2/kv"
+	"github.com/tikv/client-go/v2/tikvrpc"
+	"github.com/tikv/client-go/v2/txnkv/txnsnapshot"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 // TxnProbe wraps a txn and exports internal states for testing purpose.

@@ -40,10 +40,17 @@ import (
 	"io"
 	"math"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/util/codec"
 	"github.com/google/btree"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
+=======
+	"github.com/google/btree"
+	"github.com/pingcap/kvproto/pkg/kvrpcpb"
+	"github.com/pkg/errors"
+	"github.com/tikv/client-go/v2/util/codec"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 type mvccValueType int

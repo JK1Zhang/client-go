@@ -39,11 +39,14 @@ import (
 	"math"
 	"sync"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/internal/logutil"
 	"github.com/JK1Zhang/client-go/v3/internal/mockstore/deadlock"
 	"github.com/JK1Zhang/client-go/v3/oracle"
 	"github.com/JK1Zhang/client-go/v3/util/codec"
+=======
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"github.com/dgryski/go-farm"
 	"github.com/pingcap/goleveldb/leveldb"
 	"github.com/pingcap/goleveldb/leveldb/iterator"
@@ -52,6 +55,14 @@ import (
 	"github.com/pingcap/goleveldb/leveldb/util"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
+<<<<<<< HEAD
+=======
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/internal/logutil"
+	"github.com/tikv/client-go/v2/internal/mockstore/deadlock"
+	"github.com/tikv/client-go/v2/oracle"
+	"github.com/tikv/client-go/v2/util/codec"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"go.uber.org/zap"
 )
 

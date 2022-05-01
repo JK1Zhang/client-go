@@ -14,7 +14,11 @@
 
 package txnkv
 
+<<<<<<< HEAD
 import "github.com/JK1Zhang/client-go/v3/txnkv/txnutil"
+=======
+import "github.com/tikv/client-go/v2/txnkv/txnutil"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 
 // Priority is the priority for tikv to execute a command.
 type Priority = txnutil.Priority

@@ -42,15 +42,26 @@ import (
 	"testing"
 	"unsafe"
 
+<<<<<<< HEAD
 	"github.com/JK1Zhang/client-go/v3/config"
 	"github.com/JK1Zhang/client-go/v3/testutils"
 	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/JK1Zhang/client-go/v3/txnkv/transaction"
 	"github.com/JK1Zhang/client-go/v3/util/codec"
+=======
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	"github.com/pingcap/tidb/kv"
 	txndriver "github.com/pingcap/tidb/store/driver/txn"
 	"github.com/pingcap/tidb/store/mockstore/unistore"
 	"github.com/stretchr/testify/require"
+<<<<<<< HEAD
+=======
+	"github.com/tikv/client-go/v2/config"
+	"github.com/tikv/client-go/v2/testutils"
+	"github.com/tikv/client-go/v2/tikv"
+	"github.com/tikv/client-go/v2/txnkv/transaction"
+	"github.com/tikv/client-go/v2/util/codec"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	pd "github.com/tikv/pd/client"
 )
 

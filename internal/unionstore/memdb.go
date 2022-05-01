@@ -41,8 +41,13 @@ import (
 	"sync"
 	"unsafe"
 
+<<<<<<< HEAD
 	tikverr "github.com/JK1Zhang/client-go/v3/error"
 	"github.com/JK1Zhang/client-go/v3/kv"
+=======
+	tikverr "github.com/tikv/client-go/v2/error"
+	"github.com/tikv/client-go/v2/kv"
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 )
 
 var tombstone = []byte{}
@@ -111,14 +116,31 @@ func (db *MemDB) Staging() int {
 
 // Release publish all modifications in the latest staging buffer to upper level.
 func (db *MemDB) Release(h int) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	db.Lock()
+	defer db.Unlock()
+
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	if h != len(db.stages) {
 		// This should never happens in production environment.
 		// Use panic to make debug easier.
 		panic("cannot release staging buffer")
 	}
 
+<<<<<<< HEAD
 	db.Lock()
 	defer db.Unlock()
+=======
+<<<<<<< HEAD
+	db.Lock()
+	defer db.Unlock()
+=======
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	if h == 1 {
 		tail := db.vlog.checkpoint()
 		if !db.stages[0].isSamePosition(&tail) {
@@ -131,6 +153,15 @@ func (db *MemDB) Release(h int) {
 // Cleanup cleanup the resources referenced by the StagingHandle.
 // If the changes are not published by `Release`, they will be discarded.
 func (db *MemDB) Cleanup(h int) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	db.Lock()
+	defer db.Unlock()
+
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	if h > len(db.stages) {
 		return
 	}
@@ -140,8 +171,16 @@ func (db *MemDB) Cleanup(h int) {
 		panic("cannot cleanup staging buffer")
 	}
 
+<<<<<<< HEAD
 	db.Lock()
 	defer db.Unlock()
+=======
+<<<<<<< HEAD
+	db.Lock()
+	defer db.Unlock()
+=======
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	cp := &db.stages[h-1]
 	if !db.vlogInvalid {
 		curr := db.vlog.checkpoint()
@@ -294,6 +333,15 @@ func (db *MemDB) Dirty() bool {
 }
 
 func (db *MemDB) set(key []byte, value []byte, ops ...kv.FlagsOp) error {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+	db.Lock()
+	defer db.Unlock()
+
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	if db.vlogInvalid {
 		// panic for easier debugging.
 		panic("vlog is resetted")
@@ -308,9 +356,18 @@ func (db *MemDB) set(key []byte, value []byte, ops ...kv.FlagsOp) error {
 		}
 	}
 
+<<<<<<< HEAD
 	db.Lock()
 	defer db.Unlock()
 
+=======
+<<<<<<< HEAD
+	db.Lock()
+	defer db.Unlock()
+
+=======
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
+>>>>>>> 7683491695d090758b4274eccd76d6c975704324
 	if len(db.stages) == 0 {
 		db.dirty = true
 	}
