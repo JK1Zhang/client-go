@@ -145,7 +145,7 @@ func LdbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit in
 
 //LoadLSM 取两个时间戳区间内的所有 KV 对，并以流 ID (给出组成流ID的下标)为 key 重新生成键值存储
 func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart []int) {
-	limit := 1000
+	limit := 10000
 	startKey := []byte(startTime)
 	endKey := []byte(endTime)
 	mapIP := make(map[string]string)
@@ -236,8 +236,8 @@ func LdbGet(dbName, flowID string) (value string, err error) {
 	}
 	ro := levigo.NewReadOptions()
 	defer db.Close()
-	defer ro.Close()
 	defer opt.Close()
+	defer ro.Close()
 	val, err := db.Get(ro, []byte(flowID))
 	if err != nil {
 		fmt.Printf("read the flowID from db error!\n")
