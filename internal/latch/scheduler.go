@@ -38,7 +38,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/tikv/client-go/v2/oracle"
+	"github.com/JK1Zhang/client-go/v3/oracle"
 )
 
 const lockChanSize = 100

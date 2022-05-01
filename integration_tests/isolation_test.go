@@ -45,11 +45,11 @@ import (
 	"testing"
 	"time"
 
+	kverr "github.com/JK1Zhang/client-go/v3/error"
+	"github.com/JK1Zhang/client-go/v3/tikv"
+	"github.com/JK1Zhang/client-go/v3/txnkv/transaction"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/suite"
-	kverr "github.com/tikv/client-go/v2/error"
-	"github.com/tikv/client-go/v2/tikv"
-	"github.com/tikv/client-go/v2/txnkv/transaction"
 )
 
 func TestIsolation(t *testing.T) {

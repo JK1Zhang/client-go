@@ -43,6 +43,10 @@ import (
 	"time"
 	"unsafe"
 
+	"github.com/JK1Zhang/client-go/v3/internal/client"
+	"github.com/JK1Zhang/client-go/v3/internal/mockstore/mocktikv"
+	"github.com/JK1Zhang/client-go/v3/internal/retry"
+	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/pingcap/kvproto/pkg/coprocessor"
 	"github.com/pingcap/kvproto/pkg/errorpb"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
@@ -51,10 +55,6 @@ import (
 	"github.com/pingcap/kvproto/pkg/tikvpb"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/suite"
-	"github.com/tikv/client-go/v2/internal/client"
-	"github.com/tikv/client-go/v2/internal/mockstore/mocktikv"
-	"github.com/tikv/client-go/v2/internal/retry"
-	"github.com/tikv/client-go/v2/tikvrpc"
 	"google.golang.org/grpc"
 )
 

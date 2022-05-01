@@ -42,10 +42,10 @@ import (
 	"sync"
 	"time"
 
+	"github.com/JK1Zhang/client-go/v3/internal/mockstore/cluster"
 	"github.com/golang/protobuf/proto" //nolint
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pingcap/kvproto/pkg/metapb"
-	"github.com/tikv/client-go/v2/internal/mockstore/cluster"
 	pd "github.com/tikv/pd/client"
 )
 

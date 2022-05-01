@@ -41,11 +41,11 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/JK1Zhang/client-go/v3/internal/logutil"
+	"github.com/JK1Zhang/client-go/v3/internal/retry"
+	"github.com/JK1Zhang/client-go/v3/kv"
+	"github.com/JK1Zhang/client-go/v3/metrics"
 	"github.com/pkg/errors"
-	"github.com/tikv/client-go/v2/internal/logutil"
-	"github.com/tikv/client-go/v2/internal/retry"
-	"github.com/tikv/client-go/v2/kv"
-	"github.com/tikv/client-go/v2/metrics"
 	"go.uber.org/zap"
 )
 

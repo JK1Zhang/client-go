@@ -43,14 +43,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/JK1Zhang/client-go/v3/internal/mockstore/mocktikv"
+	"github.com/JK1Zhang/client-go/v3/internal/retry"
+	"github.com/JK1Zhang/client-go/v3/kv"
 	"github.com/gogo/protobuf/proto"
 	"github.com/google/btree"
 	"github.com/pingcap/kvproto/pkg/errorpb"
 	"github.com/pingcap/kvproto/pkg/metapb"
 	"github.com/stretchr/testify/suite"
-	"github.com/tikv/client-go/v2/internal/mockstore/mocktikv"
-	"github.com/tikv/client-go/v2/internal/retry"
-	"github.com/tikv/client-go/v2/kv"
 	pd "github.com/tikv/pd/client"
 )
 

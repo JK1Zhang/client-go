@@ -41,17 +41,17 @@ import (
 	"time"
 	"unsafe"
 
+	tikverr "github.com/JK1Zhang/client-go/v3/error"
+	"github.com/JK1Zhang/client-go/v3/internal/mockstore/mocktikv"
+	"github.com/JK1Zhang/client-go/v3/internal/retry"
+	"github.com/JK1Zhang/client-go/v3/kv"
+	"github.com/JK1Zhang/client-go/v3/oracle"
+	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/pingcap/kvproto/pkg/errorpb"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pingcap/kvproto/pkg/metapb"
 	"github.com/pkg/errors"
 	"github.com/stretchr/testify/suite"
-	tikverr "github.com/tikv/client-go/v2/error"
-	"github.com/tikv/client-go/v2/internal/mockstore/mocktikv"
-	"github.com/tikv/client-go/v2/internal/retry"
-	"github.com/tikv/client-go/v2/kv"
-	"github.com/tikv/client-go/v2/oracle"
-	"github.com/tikv/client-go/v2/tikvrpc"
 )
 
 func TestRegionRequestToThreeStores(t *testing.T) {

@@ -41,8 +41,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/JK1Zhang/client-go/v3/internal/logutil"
 	"github.com/cznic/mathutil"
-	"github.com/tikv/client-go/v2/internal/logutil"
 	"github.com/twmb/murmur3"
 	"go.uber.org/zap"
 )

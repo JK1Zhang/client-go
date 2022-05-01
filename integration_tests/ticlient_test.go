@@ -41,11 +41,11 @@ import (
 	"testing"
 	"time"
 
+	kverr "github.com/JK1Zhang/client-go/v3/error"
+	tikvstore "github.com/JK1Zhang/client-go/v3/kv"
+	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/ninedraft/israce"
 	"github.com/stretchr/testify/suite"
-	kverr "github.com/tikv/client-go/v2/error"
-	tikvstore "github.com/tikv/client-go/v2/kv"
-	"github.com/tikv/client-go/v2/tikv"
 )
 
 func TestTiclient(t *testing.T) {

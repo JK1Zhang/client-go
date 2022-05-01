@@ -19,10 +19,10 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/JK1Zhang/client-go/v3/config"
+	"github.com/JK1Zhang/client-go/v3/rawkv"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
-	"github.com/tikv/client-go/v2/config"
-	"github.com/tikv/client-go/v2/rawkv"
 )
 
 func TestCAS(t *testing.T) {

@@ -24,9 +24,9 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/JK1Zhang/client-go/v3/config"
+	"github.com/JK1Zhang/client-go/v3/rawkv"
 	"github.com/jmhodges/levigo"
-	"github.com/tikv/client-go/v2/config"
-	"github.com/tikv/client-go/v2/rawkv"
 )
 
 func main() {

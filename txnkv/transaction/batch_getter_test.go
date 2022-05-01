@@ -38,9 +38,9 @@ import (
 	"context"
 	"testing"
 
+	tikverr "github.com/JK1Zhang/client-go/v3/error"
+	"github.com/JK1Zhang/client-go/v3/kv"
 	"github.com/stretchr/testify/assert"
-	tikverr "github.com/tikv/client-go/v2/error"
-	"github.com/tikv/client-go/v2/kv"
 )
 
 func TestBufferBatchGetter(t *testing.T) {

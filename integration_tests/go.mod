@@ -11,11 +11,11 @@ require (
 	github.com/pingcap/tidb/parser v0.0.0-20220222031143-5988d0b2f46e // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.7.0
-	github.com/tikv/client-go/v2 v2.0.0
+	github.com/JK1Zhang/client-go/v3 v2.0.0
 	github.com/tikv/pd/client v0.0.0-20220307081149-841fa61e9710
 	go.uber.org/goleak v1.1.12
 )
 
-replace github.com/tikv/client-go/v2 => ../
+replace github.com/JK1Zhang/client-go/v3 => ../
 
 replace github.com/pingcap/tidb => github.com/youjiali1995/tidb v1.1.0-beta.0.20220307101903-dc13c53aac36

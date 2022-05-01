@@ -35,14 +35,14 @@
 package transaction
 
 import (
+	"github.com/JK1Zhang/client-go/v3/internal/client"
+	"github.com/JK1Zhang/client-go/v3/internal/logutil"
+	"github.com/JK1Zhang/client-go/v3/internal/retry"
+	"github.com/JK1Zhang/client-go/v3/metrics"
+	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/tikv/client-go/v2/internal/client"
-	"github.com/tikv/client-go/v2/internal/logutil"
-	"github.com/tikv/client-go/v2/internal/retry"
-	"github.com/tikv/client-go/v2/metrics"
-	"github.com/tikv/client-go/v2/tikvrpc"
 	"go.uber.org/zap"
 )
 

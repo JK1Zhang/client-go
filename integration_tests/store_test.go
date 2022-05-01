@@ -40,14 +40,14 @@ import (
 	"testing"
 	"time"
 
+	"github.com/JK1Zhang/client-go/v3/oracle"
+	"github.com/JK1Zhang/client-go/v3/oracle/oracles"
+	"github.com/JK1Zhang/client-go/v3/tikv"
+	"github.com/JK1Zhang/client-go/v3/tikvrpc"
+	"github.com/JK1Zhang/client-go/v3/txnkv"
 	"github.com/pingcap/failpoint"
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/stretchr/testify/suite"
-	"github.com/tikv/client-go/v2/oracle"
-	"github.com/tikv/client-go/v2/oracle/oracles"
-	"github.com/tikv/client-go/v2/tikv"
-	"github.com/tikv/client-go/v2/tikvrpc"
-	"github.com/tikv/client-go/v2/txnkv"
 )
 
 func TestStore(t *testing.T) {

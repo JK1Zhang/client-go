@@ -38,10 +38,10 @@ import (
 	"context"
 	"testing"
 
+	"github.com/JK1Zhang/client-go/v3/metrics"
+	"github.com/JK1Zhang/client-go/v3/oracle"
+	"github.com/JK1Zhang/client-go/v3/tikv"
 	"github.com/stretchr/testify/suite"
-	"github.com/tikv/client-go/v2/metrics"
-	"github.com/tikv/client-go/v2/oracle"
-	"github.com/tikv/client-go/v2/tikv"
 )
 
 func TestOnePC(t *testing.T) {

@@ -17,8 +17,8 @@ package interceptor
 import (
 	"testing"
 
+	"github.com/JK1Zhang/client-go/v3/tikvrpc"
 	"github.com/stretchr/testify/assert"
-	"github.com/tikv/client-go/v2/tikvrpc"
 )
 
 func TestInterceptor(t *testing.T) {

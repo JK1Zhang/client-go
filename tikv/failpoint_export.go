@@ -14,7 +14,7 @@
 
 package tikv
 
-import "github.com/tikv/client-go/v2/util"
+import "github.com/JK1Zhang/client-go/v3/util"
 
 var (
 	// EnableFailpoints enables use of failpoints.

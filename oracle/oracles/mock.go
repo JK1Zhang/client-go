@@ -39,8 +39,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/JK1Zhang/client-go/v3/oracle"
 	"github.com/pkg/errors"
-	"github.com/tikv/client-go/v2/oracle"
 )
 
 var errStopped = errors.New("stopped")

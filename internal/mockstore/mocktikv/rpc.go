@@ -41,6 +41,9 @@ import (
 	"strconv"
 	"time"
 
+	tikverr "github.com/JK1Zhang/client-go/v3/error"
+	"github.com/JK1Zhang/client-go/v3/tikvrpc"
+	"github.com/JK1Zhang/client-go/v3/util"
 	"github.com/opentracing/opentracing-go"
 	"github.com/pingcap/kvproto/pkg/coprocessor"
 	"github.com/pingcap/kvproto/pkg/debugpb"
@@ -48,9 +51,6 @@ import (
 	"github.com/pingcap/kvproto/pkg/kvrpcpb"
 	"github.com/pingcap/kvproto/pkg/metapb"
 	"github.com/pkg/errors"
-	tikverr "github.com/tikv/client-go/v2/error"
-	"github.com/tikv/client-go/v2/tikvrpc"
-	"github.com/tikv/client-go/v2/util"
 )
 
 const requestMaxSize = 8 * 1024 * 1024
