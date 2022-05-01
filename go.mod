@@ -11,7 +11,10 @@ require (
 	github.com/google/btree v1.0.0
 	github.com/google/uuid v1.1.2
 	github.com/grpc-ecosystem/go-grpc-middleware v1.1.0
+<<<<<<< HEAD
 	github.com/jmhodges/levigo v1.0.0
+=======
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.18.1 // indirect
 	github.com/opentracing/opentracing-go v1.2.0

@@ -15,6 +15,7 @@
 package main
 
 import (
+<<<<<<< HEAD
 	"bufio"
 	"context"
 	"flag"
@@ -25,16 +26,26 @@ import (
 	"strings"
 
 	"github.com/jmhodges/levigo"
+=======
+	"context"
+	"fmt"
+
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
 	"github.com/tikv/client-go/v2/config"
 	"github.com/tikv/client-go/v2/rawkv"
 )
 
 func main() {
+<<<<<<< HEAD
 	cli, err := rawkv.NewClient(context.TODO(), []string{"127.0.0.1:2479"}, config.DefaultConfig().Security)
+=======
+	cli, err := rawkv.NewClient(context.TODO(), []string{"127.0.0.1:2379"}, config.DefaultConfig().Security)
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
 	if err != nil {
 		panic(err)
 	}
 	defer cli.Close()
+<<<<<<< HEAD
 	fmt.Printf("cluster ID: %d\n", cli.ClusterID())
 	dbName := flag.String("db", "/home/distkv/jk/go_client_test/client-go/examples/rawkv/db_test1", "the name of database")
 	funcName := flag.String("func", "", "a func such as Get、Scan、LoadLSM")
@@ -383,4 +394,39 @@ func Scan(dbName, startFlowID, endFlowID string) (key []string, value []string, 
 		value = append(value, string(iter.Value()))
 	}
 	return key, value, nil
+=======
+
+	fmt.Printf("cluster ID: %d\n", cli.ClusterID())
+
+	key := []byte("Company")
+	val := []byte("PingCAP")
+
+	// put key into tikv
+	err = cli.Put(context.TODO(), key, val)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Successfully put %s:%s to tikv\n", key, val)
+
+	// get key from tikv
+	val, err = cli.Get(context.TODO(), key)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("found val: %s for key: %s\n", val, key)
+
+	// delete key from tikv
+	err = cli.Delete(context.TODO(), key)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("key: %s deleted\n", key)
+
+	// get key again from tikv
+	val, err = cli.Get(context.TODO(), key)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("found val: %s for key: %s\n", val, key)
+>>>>>>> 3984ffee099c6a7ff43e9f8694d90077fce99a6f
 }
