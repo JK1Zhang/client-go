@@ -27,7 +27,7 @@ import (
 )
 
 //读取目录下的所有文件名
-func dbListFile(dirName string) (files []string) {
+func LdbListFile(dirName string) (files []string) {
 	dir, err := ioutil.ReadDir(dirName)
 	if err != nil {
 		return nil
@@ -49,7 +49,7 @@ func dbListFile(dirName string) (files []string) {
 }
 
 //将所有文件写入数据库
-func dbWriteFile(cli *rawkv.Client, files []string) {
+func LdbWriteFile(cli *rawkv.Client, files []string) {
 	for _, file := range files {
 		fd, err := os.Open(file)
 		if err != nil {
@@ -77,7 +77,7 @@ func dbWriteFile(cli *rawkv.Client, files []string) {
 }
 
 //导出数据库中的所有文件的ip, limit为每次scan的长度，区间[startTime，endTime]
-func dbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit int) {
+func LdbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit int) {
 	startKey := []byte(startTime)
 	endKey := []byte(endTime)
 	mapIP := make(map[string]int)
@@ -144,7 +144,7 @@ func dbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit int
 }
 
 //LoadLSM 取两个时间戳区间内的所有 KV 对，并以流 ID (给出组成流ID的下标)为 key 重新生成键值存储
-func dbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart []int) {
+func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart []int) {
 	limit := 1000
 	startKey := []byte(startTime)
 	endKey := []byte(endTime)
@@ -227,7 +227,7 @@ func dbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart 
 }
 
 //Get(FlowID): 根据FlowID获取对应流数据的 KV 对
-func dbGet(dbName, flowID string) (value string, err error) {
+func LdbGet(dbName, flowID string) (value string, err error) {
 	opt := levigo.NewOptions()
 	db, err := levigo.Open(dbName, opt)
 	if err != nil {
@@ -248,7 +248,7 @@ func dbGet(dbName, flowID string) (value string, err error) {
 }
 
 //Scan( FlowID _start, FlowID _end): 获取两个流 ID 区间内(字母序)的所有流数据
-func dbScan(dbName, startFlowID, endFlowID string) (key []string, value []string, err error) {
+func LdbScan(dbName, startFlowID, endFlowID string) (key []string, value []string, err error) {
 	opt := levigo.NewOptions()
 	db, err := levigo.Open(dbName, opt)
 	if err != nil {
