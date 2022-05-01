@@ -235,8 +235,9 @@ func LdbGet(dbName, flowID string) (value string, err error) {
 		return "", err
 	}
 	ro := levigo.NewReadOptions()
-	defer ro.Close()
 	defer db.Close()
+	defer ro.Close()
+	defer opt.Close()
 	val, err := db.Get(ro, []byte(flowID))
 	if err != nil {
 		fmt.Printf("read the flowID from db error!\n")
@@ -257,9 +258,10 @@ func LdbScan(dbName, startFlowID, endFlowID string) (key []string, value []strin
 	}
 	ro := levigo.NewReadOptions()
 	iter := db.NewIterator(ro)
-	defer ro.Close()
-	defer iter.Close()
 	defer db.Close()
+	defer iter.Close()
+	defer opt.Close()
+	defer ro.Close()
 	for iter.Seek([]byte(startFlowID)); iter.Valid() && string(iter.Key()) <= endFlowID; iter.Next() {
 		key = append(key, string(iter.Key()))
 		value = append(value, string(iter.Value()))
