@@ -36,7 +36,7 @@ func LdbListFile(dirName string) (files []string) {
 	for _, fi := range dir {
 		if fi.IsDir() { // 目录, 递归遍历
 			filename := dirName + "/" + fi.Name()
-			files = append(files, dbListFile(filename)...)
+			files = append(files, LdbListFile(filename)...)
 		} else {
 			ok := strings.HasSuffix(fi.Name(), ".txt")
 			if ok {
