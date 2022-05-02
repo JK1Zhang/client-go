@@ -53,7 +53,7 @@ func LdbWriteFile(cli *rawkv.Client, files []string) {
 	for _, file := range files {
 		fd, err := os.Open(file)
 		if err != nil {
-			fmt.Println("open %s file error\n", file)
+			fmt.Printf("open %s file error\n", file)
 		} else {
 			buf := bufio.NewScanner(fd)
 			for {
@@ -155,7 +155,7 @@ func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart
 		if err != nil || len(keyPart) != len(valPart) {
 			panic(err)
 		}
-		if len(valPart) < limit {
+		if len(valPart) < limit { //退出条件
 			endVal, e := cli.Get(context.TODO(), endKey)
 			if e != nil {
 				panic(e)
@@ -223,29 +223,31 @@ func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart
 	}
 	db.Write(wo, batch)
 	batch.Clear()
-	fmt.Println(num)
+	fmt.Printf("the num of diff key is : %d \n", num)
 }
 
 //Get(FlowID): 根据FlowID获取对应流数据的 KV 对
-func LdbGet(dbName, flowID string) (value string, err error) {
+func LdbGet(dbName, flowID string) (value []string, err error) {
 	opt := levigo.NewOptions()
-	db, err := levigo.Open(dbName, opt)
+	db, err1 := levigo.Open(dbName, opt)
 	if err != nil {
 		fmt.Printf("open leveldb error!\n")
-		return "", err
+		return []string{}, err1
 	}
 	ro := levigo.NewReadOptions()
 	defer db.Close()
 	defer opt.Close()
 	defer ro.Close()
-	val, err := db.Get(ro, []byte(flowID))
+	val, err2 := db.Get(ro, []byte(flowID))
 	if err != nil {
 		fmt.Printf("read the flowID from db error!\n")
+		return []string{}, err2
 	}
 	if val == nil {
-		fmt.Printf("the value is nil!")
+		fmt.Printf("the value is nil!\n")
 	}
-	return string(val), nil
+	str := strings.Split(string(val), "@")
+	return str, nil
 }
 
 //Scan( FlowID _start, FlowID _end): 获取两个流 ID 区间内(字母序)的所有流数据
@@ -263,8 +265,12 @@ func LdbScan(dbName, startFlowID, endFlowID string) (key []string, value []strin
 	defer opt.Close()
 	defer ro.Close()
 	for iter.Seek([]byte(startFlowID)); iter.Valid() && string(iter.Key()) <= endFlowID; iter.Next() {
-		key = append(key, string(iter.Key()))
-		value = append(value, string(iter.Value()))
+		str := strings.Split(string(iter.Value()), "@")
+		for i := 0; i < len(str); i++ {
+			key = append(key, string(iter.Key()))
+			value = append(value, str[i])
+		}
+
 	}
 	return key, value, nil
 }
