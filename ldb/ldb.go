@@ -288,7 +288,7 @@ func GetGraph(cli *rawkv.Client, startTime, endTime string) {
 	os.Mkdir(IPDirName, 0777)
 	os.Chmod(IPDirName, 0777)
 	limit := 10000                                             //限制比rawkv.MaxRawKVScanLimit = 10240 小
-	ldb.LdbLoadTXT(cli, IPFileName, startTime, endTime, limit) //产生中间文件
+	LdbLoadTXT(cli, IPFileName, startTime, endTime, limit) //产生中间文件
 	cmd := exec.Command("ToCSR", "-g", middleFile)             //执行生成图文件的EXE程序
 	var stdout, stderr bytes.Buffer
 	cmd.Stdout = &stdout // 标准输出
