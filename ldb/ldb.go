@@ -16,10 +16,12 @@ package ldb
 
 import (
 	"bufio"
+	"bytes"
 	"context"
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"strings"
 
 	"github.com/JK1Zhang/client-go/v3/rawkv"
@@ -139,7 +141,7 @@ func LdbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit in
 		fd.WriteString(data)
 		num += val
 	}
-	fmt.Println(num)
+	fmt.Printf("the num of diff IP is : %d \n", num)
 	fd.Close()
 }
 
@@ -273,4 +275,25 @@ func LdbScan(dbName, startFlowID, endFlowID string) (key []string, value []strin
 
 	}
 	return key, value, nil
+}
+
+func GetGraph(cli *rawkv.Client, startTime, endTime string) {
+	IPFileName := "./test"
+	middleFile := "test"
+	limit := 10000                                         //限制比rawkv.MaxRawKVScanLimit = 10240 小
+	LdbLoadTXT(cli, IPFileName, startTime, endTime, limit) //产生中间文件
+	cmd := exec.Command("./ToCSR", "-g", middleFile)       //执行生成图文件的EXE程序
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout // 标准输出
+	cmd.Stderr = &stderr // 标准错误
+	err := cmd.Run()
+	outStr, errStr := string(stdout.Bytes()), string(stderr.Bytes())
+	fmt.Printf("stdout:\n%s\nstderr:\n%s\n", outStr, errStr)
+	if err != nil {
+		fmt.Printf("cmd.Run() failed with %s\n", err)
+	}
+	_, err = os.Stat(IPFileName)
+	if err == nil {
+		os.Remove(IPFileName) //删除中间文件
+	}
 }

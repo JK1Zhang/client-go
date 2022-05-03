@@ -40,6 +40,9 @@ func main() {
 	flowIDPart := []int{3, 7, 8}
 	fmt.Println("选择的flowid下标为: ", flowIDPart)
 
+	//测试GetGraph
+	ldb.GetGraph(cli, startkey, endkey)
+
 	//测试loadLSM，保存流 ID kv对到levelDB
 	ldb.LdbLoadLSM(cli, dbName, startkey, endkey, flowIDPart)
 
