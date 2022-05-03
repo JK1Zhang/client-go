@@ -278,22 +278,26 @@ func LdbScan(dbName, startFlowID, endFlowID string) (key []string, value []strin
 }
 
 func GetGraph(cli *rawkv.Client, startTime, endTime string) {
-	IPFileName := "./test"
-	middleFile := "test"
-	limit := 10000                                         //限制比rawkv.MaxRawKVScanLimit = 10240 小
-	LdbLoadTXT(cli, IPFileName, startTime, endTime, limit) //产生中间文件
-	cmd := exec.Command("./ToCSR", "-g", middleFile)       //执行生成图文件的EXE程序
+	IPDirName := "./CSR"
+	IPFileName := "./CSR/test"
+	middleFile := "./CSR/test"
+	fi, err := os.Stat(IPDirName)
+	if err == nil && fi.IsDir() { //存在
+		os.RemoveAll(IPDirName) //移除原有文件内容
+	}
+	os.Mkdir(IPDirName, 0777)
+	os.Chmod(IPDirName, 0777)
+	limit := 10000                                             //限制比rawkv.MaxRawKVScanLimit = 10240 小
+	ldb.LdbLoadTXT(cli, IPFileName, startTime, endTime, limit) //产生中间文件
+	cmd := exec.Command("ToCSR", "-g", middleFile)             //执行生成图文件的EXE程序
 	var stdout, stderr bytes.Buffer
 	cmd.Stdout = &stdout // 标准输出
 	cmd.Stderr = &stderr // 标准错误
-	err := cmd.Run()
+	err = cmd.Run()
 	outStr, errStr := string(stdout.Bytes()), string(stderr.Bytes())
 	fmt.Printf("stdout:\n%s\nstderr:\n%s\n", outStr, errStr)
 	if err != nil {
 		fmt.Printf("cmd.Run() failed with %s\n", err)
 	}
-	_, err = os.Stat(IPFileName)
-	if err == nil {
-		os.Remove(IPFileName) //删除中间文件
-	}
+	os.Remove(IPFileName) //删除中间文件
 }
