@@ -58,6 +58,8 @@ func LdbWriteFile(cli *rawkv.Client, files []string) {
 			fmt.Printf("open %s file error\n", file)
 		} else {
 			buf := bufio.NewScanner(fd)
+			keys := [][]byte{}
+			vals := [][]byte{}
 			for {
 				if !buf.Scan() {
 					break
@@ -66,16 +68,22 @@ func LdbWriteFile(cli *rawkv.Client, files []string) {
 				line = strings.TrimSpace(line)
 				str := strings.Fields(line)
 				key := []byte(str[0])
+				keys = append(keys, key)
 				val := []byte(strings.Join(str[1:], " "))
-				err = cli.Put(context.TODO(), key, val)
-				if err != nil {
-					panic(err)
-				}
+				vals = append(vals, val)
+				// err = cli.Put(context.TODO(), key, val)
+				// if err != nil {
+				// 	panic(err)
+				// }
+			}
+			err = cli.BatchPut(context.TODO(), keys, vals)
+			if err != nil {
+				panic(err)
 			}
 		}
-		fmt.Println(file)
 		fd.Close()
 	}
+	fmt.Printf("Write %d files!\n", len(files))
 }
 
 //导出数据库中的所有文件的ip, limit为每次scan的长度，区间[startTime，endTime]
@@ -119,12 +127,14 @@ func LdbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit in
 				panic(err)
 			}
 			//endkey对应的val读出
-			str = strings.Fields(string(endval))
-			key = str[8] + " " + str[7]
-			if _, ok := mapIP[key]; ok {
-				mapIP[key]++
-			} else {
-				mapIP[key] = 1
+			if len(endval) != 0 {
+				str = strings.Fields(string(endval))
+				key = str[8] + " " + str[7]
+				if _, ok := mapIP[key]; ok {
+					mapIP[key]++
+				} else {
+					mapIP[key] = 1
+				}
 			}
 			break
 		}
@@ -136,73 +146,33 @@ func LdbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit in
 		return
 	}
 	//遍历字典
-	for key, val := range mapIP {
+	for key, _ := range mapIP {
 		data := key + "\n"
 		fd.WriteString(data)
-		num += val
+		num++
 	}
 	fmt.Printf("the num of diff IP is : %d \n", num)
 	fd.Close()
 }
 
+
 //LoadLSM 取两个时间戳区间内的所有 KV 对，并以流 ID (给出组成流ID的下标)为 key 重新生成键值存储
+//以字典实现，分批次读取数据，每次最多从tikv中读取limit(10000)个以时间戳为key的<k,v>
+//字典记录key，<k,v>写入数据库中，当有新数据时，若key不存在，直接写入，key存在就先读出再拼接写入
 func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart []int) {
 	limit := 10000
 	startKey := []byte(startTime)
 	endKey := []byte(endTime)
-	mapIP := make(map[string]string)
+	mapIP := make(map[string]string)    //全局判断key是否已经存在
+	mapIPTmp := make(map[string]string) //临时map，用来在scan一轮中将数据存储
 	num := 0
-	for {
-		keyPart, valPart, err := cli.Scan(context.TODO(), startKey, endKey, limit)
-		if err != nil || len(keyPart) != len(valPart) {
-			panic(err)
-		}
-		if len(valPart) < limit { //退出条件
-			endVal, e := cli.Get(context.TODO(), endKey)
-			if e != nil {
-				panic(e)
-			}
-			valPart = append(valPart, endVal)
-			keyPart = append(keyPart, endKey)
-			//连着endkey对应的数据一起读出
-			for i := 0; i < len(valPart); i++ {
-				str := strings.Fields(string(valPart[i]))
-				val := string(keyPart[i]) + " " + strings.Join(str[0:flowIDPart[0]], " ")
-				key := str[flowIDPart[0]]
-				j := 1
-				for ; j < len(flowIDPart); j++ {
-					key += " " + str[flowIDPart[j]]
-					val += " " + strings.Join(str[flowIDPart[j-1]+1:flowIDPart[j]], " ")
-				}
-				val += " " + strings.Join(str[flowIDPart[j-1]+1:], " ")
-				if value, ok := mapIP[key]; ok {
-					mapIP[key] = value + "@" + val
-				} else {
-					mapIP[key] = val
-				}
-			}
-			break
-		} else {
-			for i := 0; i < len(valPart)-1; i++ {
-				str := strings.Fields(string(valPart[i]))
-				val := string(keyPart[i]) + " " + strings.Join(str[0:flowIDPart[0]], " ")
-				key := str[flowIDPart[0]]
-				j := 1
-				for ; j < len(flowIDPart); j++ {
-					key += " " + str[flowIDPart[j]]
-					val += " " + strings.Join(str[flowIDPart[j-1]+1:flowIDPart[j]], " ")
-				}
-				val += " " + strings.Join(str[flowIDPart[j-1]+1:], " ")
-				if value, ok := mapIP[key]; ok {
-					mapIP[key] = value + "@" + val
-				} else {
-					mapIP[key] = val
-				}
-				startKey = keyPart[len(keyPart)-1]
-			}
-		}
+	IDAll := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10} //所有属性的下标列表
+	for i, id := range flowIDPart {                  //获取value对应的属性下标列表
+		IDAll = append(IDAll[:id-i], IDAll[id-i+1:]...)
 	}
-	//遍历字典，写到leveldb中
+	lenFlowID := len(flowIDPart)
+	lenIDAll := len(IDAll)
+	//打开leveldb数据库
 	opt := levigo.NewOptions()
 	opt.SetCreateIfMissing(true)
 	db, err := levigo.Open(dbName, opt)
@@ -211,22 +181,142 @@ func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart
 		return
 	}
 	wo := levigo.NewWriteOptions()
+	ro := levigo.NewReadOptions()
 	batch := levigo.NewWriteBatch()
 	defer db.Close()
 	defer wo.Close()
+	defer ro.Close()
 	defer batch.Close()
-	for key, val := range mapIP {
-		batch.Put([]byte(key), []byte(val))
-		num++
-		if num%100 == 0 {
-			db.Write(wo, batch)
+	//scan数据，转化后写入leveldb
+	for {
+		keyPart, valPart, err := cli.Scan(context.TODO(), startKey, endKey, limit)
+		if err != nil || len(keyPart) != len(valPart) {
+			panic(err)
+		}
+		num += len(keyPart)
+		if len(valPart) < limit { //退出条件，加上右区间数据
+			endVal, e := cli.Get(context.TODO(), endKey)
+			if e != nil {
+				panic(e)
+			}
+			if len(endVal) != 0 {
+				valPart = append(valPart, endVal)
+				keyPart = append(keyPart, endKey)
+			}
+			//当开始时数据为空则直接退出
+			if len(valPart) == 0 {
+				fmt.Printf("The <k,v> is nil between the range of timestamp!\n")
+				return
+			}
+			//连着endkey对应的数据一起读出
+			for i := 0; i < len(valPart); i++ {
+				var keyBuilder strings.Builder
+				var valBuilder strings.Builder
+				str := strings.Fields(string(valPart[i]))
+
+				//创建多属性构成的流ID key
+				for j := 0; j < lenFlowID-1; j++ {
+					keyBuilder.WriteString(str[flowIDPart[j]])
+					keyBuilder.WriteByte(' ')
+				}
+				keyBuilder.WriteString(str[lenFlowID-1])
+				//创建余下属性构成的value
+				valBuilder.Write(keyPart[i])
+				valBuilder.WriteByte(' ')
+				for j := 0; j < lenIDAll-1; j++ {
+					valBuilder.WriteString(str[IDAll[j]])
+					valBuilder.WriteByte(' ')
+				}
+				valBuilder.WriteString(str[lenIDAll-1])
+
+				key := keyBuilder.String()
+				if value, ok := mapIPTmp[key]; ok {
+					mapIPTmp[key] = value + "@" + valBuilder.String()
+				} else {
+					mapIPTmp[key] = valBuilder.String()
+				}
+				keyBuilder.Reset()
+				valBuilder.Reset()
+			}
+			//写入数据库
+			for key, val := range mapIPTmp {
+				if _, ok := mapIP[key]; ok { //key已经存在
+					value, err := db.Get(ro, []byte(key))
+					if err != nil {
+						fmt.Printf("read leveldb failed!\n")
+						return
+					}
+					val = string(value) + "@" + val
+				} else {
+					mapIP[key] = ""
+				}
+				batch.Put([]byte(key), []byte(val))
+			}
+			mapIPTmp = make(map[string]string) //清空临时map
+			err := db.Write(wo, batch)
+			if err != nil {
+				fmt.Printf("batchwrite leveldb failed!\n")
+				return
+			}
 			batch.Clear()
+			break
+		} else {
+			for i := 0; i < len(valPart)-1; i++ {
+				var keyBuilder strings.Builder
+				var valBuilder strings.Builder
+				str := strings.Fields(string(valPart[i]))
+
+				//创建多属性构成的流ID key
+				for j := 0; j < lenFlowID-1; j++ {
+					keyBuilder.WriteString(str[flowIDPart[j]])
+					keyBuilder.WriteByte(' ')
+				}
+				keyBuilder.WriteString(str[lenFlowID-1])
+				//创建余下属性构成的value
+				valBuilder.Write(keyPart[i])
+				valBuilder.WriteByte(' ')
+				for j := 0; j < lenIDAll-1; j++ {
+					valBuilder.WriteString(str[IDAll[j]])
+					valBuilder.WriteByte(' ')
+				}
+				valBuilder.WriteString(str[lenIDAll-1])
+
+				key := keyBuilder.String()
+				if value, ok := mapIPTmp[key]; ok {
+					mapIPTmp[key] = value + "@" + valBuilder.String()
+				} else {
+					mapIPTmp[key] = valBuilder.String()
+				}
+				keyBuilder.Reset()
+				valBuilder.Reset()
+			}
+			//写入数据库
+			for key, val := range mapIPTmp {
+				if _, ok := mapIP[key]; ok { //key已经存在
+					value, err := db.Get(ro, []byte(key))
+					if err != nil {
+						fmt.Printf("read leveldb failed!\n")
+						return
+					}
+					val = string(value) + "@" + val
+				} else {
+					mapIP[key] = ""
+				}
+				batch.Put([]byte(key), []byte(val))
+			}
+			mapIPTmp = make(map[string]string) //清空临时map
+			err := db.Write(wo, batch)
+			if err != nil {
+				fmt.Printf("batchwrite leveldb failed!\n")
+				return
+			}
+			batch.Clear()
+			startKey = keyPart[len(keyPart)-1]
 		}
 	}
-	db.Write(wo, batch)
-	batch.Clear()
-	fmt.Printf("the num of diff key is : %d \n", num)
+	fmt.Printf("the total num of is : %d \n", num)
 }
+
 
 //Get(FlowID): 根据FlowID获取对应流数据的 KV 对
 func LdbGet(dbName, flowID string) (value []string, err error) {
