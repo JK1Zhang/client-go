@@ -219,7 +219,7 @@ func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart
 					keyBuilder.WriteString(str[flowIDPart[j]])
 					keyBuilder.WriteByte(' ')
 				}
-				keyBuilder.WriteString(str[lenFlowID-1])
+				keyBuilder.WriteString(str[flowIDPart[lenFlowID-1]])
 				//创建余下属性构成的value
 				valBuilder.Write(keyPart[i])
 				valBuilder.WriteByte(' ')
@@ -227,7 +227,7 @@ func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart
 					valBuilder.WriteString(str[IDAll[j]])
 					valBuilder.WriteByte(' ')
 				}
-				valBuilder.WriteString(str[lenIDAll-1])
+				valBuilder.WriteString(str[IDAll[lenIDAll-1]])
 
 				key := keyBuilder.String()
 				if value, ok := mapIPTmp[key]; ok {
@@ -271,7 +271,7 @@ func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart
 					keyBuilder.WriteString(str[flowIDPart[j]])
 					keyBuilder.WriteByte(' ')
 				}
-				keyBuilder.WriteString(str[lenFlowID-1])
+				keyBuilder.WriteString(str[flowIDPart[lenFlowID-1]])
 				//创建余下属性构成的value
 				valBuilder.Write(keyPart[i])
 				valBuilder.WriteByte(' ')
@@ -279,7 +279,7 @@ func LdbLoadLSM(cli *rawkv.Client, dbName, startTime, endTime string, flowIDPart
 					valBuilder.WriteString(str[IDAll[j]])
 					valBuilder.WriteByte(' ')
 				}
-				valBuilder.WriteString(str[lenIDAll-1])
+				valBuilder.WriteString(str[IDAll[lenIDAll-1]])
 
 				key := keyBuilder.String()
 				if value, ok := mapIPTmp[key]; ok {
