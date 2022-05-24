@@ -151,7 +151,7 @@ func LdbLoadTXT(cli *rawkv.Client, fileName, startTime, endTime string, limit in
 		fd.WriteString(data)
 		num++
 	}
-	fmt.Printf("the num of diff IP is : %d \n", num)
+	fmt.Printf("The number of different <ipv6.src,ipv6.dst> is : %d \n", num)
 	fd.Close()
 }
 
