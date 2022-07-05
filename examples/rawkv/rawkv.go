@@ -32,24 +32,31 @@ func main() {
 	defer cli.Close()
 
 	Getfile := "./test1.txt"  //测试get结果文件
-	scanfile := "./test2.txt" //测试scan结果文件
 	dbName := "./dbtest1"     //leveldb所在路径
+	startkey := "1580274000"
+	endkey := "1580274001"
+	IDKeyIpv4 := []int{5, 9, 10}
+	IDKeyIpv6 := []int{3, 7, 8}
+	fmt.Println("startkey: ", startkey)
+	fmt.Println("endkey: ", endkey)
 
-	startkey := "1580274000.809441"
-	endkey := "1580274003.012248"
-	flowIDPart := []int{3, 7, 8}
-	fmt.Println("选择的flowid下标为: ", flowIDPart)
 
 	//测试GetGraph
 	ldb.GetGraph(cli, startkey, endkey)
 
 	//测试loadLSM，保存流 ID kv对到levelDB
-	ldb.LdbLoadLSM(cli, dbName, startkey, endkey, flowIDPart)
+	ldb.LdbLoadLSM(cli, dbName, startkey, endkey, IDKeyIpv4, IDKeyIpv6)
 
 	//测试get
-	IDkey := "525394 9e60:10ae:88aa:a676:1023:450b:d646:3079 406c:3fdb:55d5:ba4f:be10:6c78:f45c:674d"
-	val, err := ldb.LdbGet(dbName, IDkey)
-	if err != nil {
+	IDkey1 := "3326 98.218.18.85 103.72.105.164"
+	val1, err1 := ldb.LdbGet(dbName, IDkey1)
+	if err2 != nil {
+		fmt.Printf("get key  from db error\n")
+		return
+	}
+	IDkey2 := "525394 9e60:10ae:88aa:a676:1023:450b:d646:3079 406c:3fdb:55d5:ba4f:be10:6c78:f45c:674d"
+	val2, err2 := ldb.LdbGet(dbName, IDkey2)
+	if err2 != nil {
 		fmt.Printf("get key  from db error\n")
 		return
 	}
@@ -59,55 +66,25 @@ func main() {
 		return
 	}
 	defer fd1.Close()
-	fd1.WriteString("key :  " + IDkey + "\n" + "Value :\n")
-	for i := 0; i < len(val); i++ {
-		value := val[i] + "\n"
+	fd1.WriteString("key :  " + IDkey1 + "\n" + "Value :\n")
+	for i := 0; i < len(val1); i++ {
+		value := val1[i] + "\n"
 		fd1.WriteString(value)
 	}
-	fmt.Printf("the num of value is : %d\n", len(val))
+	fd1.WriteString("key :  " + IDkey2 + "\n" + "Value :\n")
+	for i := 0; i < len(val2); i++ {
+		value := val2[i] + "\n"
+		fd1.WriteString(value)
+	}
 
 	//测试scan
-	startTime := "0 cc91:d473:646e:513a:1261:f28a:4a94:3a66 f71c:4fa5:6144:546b:2a63:406f:1d92:a7a0"
-	endTime := "525394 9e60:10ae:88aa:a676:1023:450b:d646:3079 406c:3fdb:55d5:ba4f:be10:6c78:f45c:674d"
+	startTime := "0"
+	endTime := "1"
 	keys, vals, err := ldb.LdbScan(dbName, startTime, endTime)
 	if err != nil {
 		fmt.Printf("get key  from db error\n")
 		return
 	}
-	fd2, err := os.OpenFile(scanfile, os.O_RDWR|os.O_TRUNC|os.O_CREATE, 0666)
-	if err != nil {
-		fmt.Printf("open txt file error!\n")
-		return
-	}
-	defer fd2.Close()
-	for i := 0; i < len(vals); i++ {
-		fd2.WriteString("key : " + keys[i] + "  " + "Value : " + vals[i])
-		fd2.WriteString("\n")
-	}
-	fmt.Printf("the num of kv is : %d\n", len(vals))
-
-	// //fmt.Printf("read ipv6 file！\n")
-	//dirName := "/home/distkv/jk/go_client_test/ipv6/6_2"
-	// dirName3 := "/home/distkv/jk/go_client_test/ipv6/6_3"
-	// dirName4 := "/home/distkv/jk/go_client_test/ipv6/6_4"
-	// dirName5 := "/home/distkv/jk/go_client_test/ipv6/6_5"
-	// //files := ListFile(dirName)
-	// //WriteFile(cli, files)
-	// dirName := [][]string{}
-	// files3 := ListFile(dirName3)
-	// files4 := ListFile(dirName4)
-	// files5 := ListFile(dirName5)
-	// dirName = append(dirName, files3)
-	// dirName = append(dirName, files4)
-	// dirName = append(dirName, files5)
-	// wg := sync.WaitGroup{}
-	// for i := 0; i < 3; i++ {
-	// 	wg.Add(1)
-	// 	go func(cli *rawkv.Client, dirname []string) {
-	// 		WriteFile(cli, dirname)
-	// 		wg.Done()
-	// 	}(cli, dirName[i])
-	// }
-	// wg.Wait()
-	// fmt.Printf("finish\n")
+	fmt.Printf("%d\n", len(vals))
+	fmt.Printf("%d\n", len(keys))
 }
